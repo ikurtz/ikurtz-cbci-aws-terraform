@@ -20,7 +20,7 @@ variable "private-subnet-count" {
 
 variable "resource-prefix" {
   type = string
-  default = "username-purpose"
+  default = "ikurtz_cbci_aws_reinvent_2023"
 }
 
 variable "aws-config" {
@@ -31,7 +31,7 @@ variable "aws-config" {
   })
   description = "AWS Configuration items"
   default = {
-    profile = "default"
+    profile = "cloudbees-sa-infra-admin"
     region = "us-east-1"
     zone = "us-east-1b"
   }
@@ -39,10 +39,10 @@ variable "aws-config" {
 
 variable "common-tags" {
   type = object({
-    cb-environment = string
-    cb-expiry = string
-    cb-owner = string
-    cb-user = string
+    cb-environment = "development"
+    cb-expiry = "2024-12-30"
+    cb-owner = "solution-architecture"
+    cb-user = "ikurtz"
   })
   description = "A simple hash map of key-value pairs that will be attached to each object created by this terraform."
 
@@ -65,8 +65,8 @@ variable "common-tags" {
   default = {
     cb-environment = "development",
     cb-expiry      = "2022-2-30",
-    cb-owner       = "professional-services",
-    cb-user        = "<username>"
+    cb-owner       = "solution-architecture",
+    cb-user        = "ikurtz"
   }
 }
 
@@ -97,7 +97,7 @@ variable "kubernetes-version" {
 variable "eks-node-group-instance-types" {
   type = list
   description = "A list of valid EC2 instances types that can be created within the node group"
-  default = ["t3.large"]
+  default = ["m7g.xlarge"]
   validation {
     condition = length(var.eks-node-group-instance-types) > 0
     error_message = "You must specify at least 1 instance type in list format"
@@ -107,7 +107,7 @@ variable "eks-node-group-instance-types" {
 variable "eks-nodes-per-nodegroup" {
   type = number
   description = "How many nodes should exist in each nodegroup created"
-  default = 1
+  default = 2
   validation {
     condition = var.eks-nodes-per-nodegroup > 0 && var.eks-nodes-per-nodegroup <= 10
     error_message = "There must be at least 1 node per nodegroup, and for safety purposes no more than 10 without changing this condition"
@@ -117,7 +117,7 @@ variable "eks-nodes-per-nodegroup" {
 variable "eks-max-nodes-per-nodegroup" {
   type = number
   description = "Maximum nodes that should exist in each nodegroup created"
-  default = 10
+  default = 6
   validation {
     condition = var.eks-max-nodes-per-nodegroup > 1 && var.eks-max-nodes-per-nodegroup <= 50
     error_message = "For safety purposes no more than 50 without changing this condition"
