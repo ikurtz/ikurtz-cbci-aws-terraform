@@ -39,10 +39,10 @@ variable "aws-config" {
 
 variable "common-tags" {
   type = object({
-    cb-environment = "development"
-    cb-expiry = "2024-12-30"
-    cb-owner = "solution-architecture"
-    cb-user = "ikurtz"
+    cb-environment = string
+    cb-expiry = string
+    cb-owner = string
+    cb-user = string
   })
   description = "A simple hash map of key-value pairs that will be attached to each object created by this terraform."
 
