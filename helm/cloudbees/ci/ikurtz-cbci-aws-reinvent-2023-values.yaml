@@ -16,4 +16,4 @@ OperationsCenter:
       alb.ingress.kubernetes.io/aws-load-balancer-connection-idle-timeout: "70"
   
 Persistence:
-  StorageClass: efs-sc
+  StorageClass: ikurtz-cbci-aws-reinvent-efs-sc
