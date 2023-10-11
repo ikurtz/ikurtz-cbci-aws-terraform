@@ -1,7 +1,8 @@
 OperationsCenter:
   JavaOpts: >-
     -Dcom.cloudbees.masterprovisioning.kubernetes.KubernetesMasterProvisioning.displayReplication=true
-  HostName: <your-domain>.aws.<username>.ps.beescloud.com
+    -Dcom.cloudbees.masterprovisioning.kubernetes.KubernetesMasterProvisioning.deleteClaim=true
+  HostName: ikurtz.aws.sa-demo.beescloud.com
   Protocol: https
   Platform: eks
   Ingress:
@@ -14,6 +15,36 @@ OperationsCenter:
       #alb.ingress.kubernetes.io/aws-load-balancer-type: "nlb"
       alb.ingress.kubernetes.io/aws-load-balancer-ssl-cert: "arn:aws:acm:us-east-1:<account-id>:certificate/<cert-id>"
       alb.ingress.kubernetes.io/aws-load-balancer-connection-idle-timeout: "70"
+  Resources:
+    Limits:
+      # OperationsCenter.Resources.Limits.Cpu -- CPU limit to run Operations Center
+      # https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-cpu
+      Cpu: 2
+      # OperationsCenter.Resources.Limits.Memory -- Memory limit to run Operations Center
+      # https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-memory
+      Memory: 8G
+    Requests:
+      # OperationsCenter.Resources.Requests.Cpu -- CPU request to run Operations Center
+      # https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-cpu
+      Cpu: 1
+      # OperationsCenter.Resources.Requests.Memory -- Memory request to run Operations Center
+      # https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-memory
+      Memory: 4G
   
 Persistence:
   StorageClass: ikurtz-cbci-aws-reinvent-efs-sc
+
+## Install Default RBAC roles and bindings
+rbac:
+  # rbac.install -- Install `role`/`rolebindings`/`serviceAccount`.
+  # If false (and rbac is enabled in the cluster anyway), provide valid names for all service accounts.
+  install: true
+  
+  # rbac.serviceAccountName -- Name of the service account Operations Center will run as
+  serviceAccountName: cjoc
+  # rbac.masterServiceAccountName -- Name of the service account Jenkins masters will run as
+  masterServiceAccountName: jenkins
+  # rbac.agentServiceAccountName -- Name of the service account Jenkins agents will run as
+  agentsServiceAccountName: jenkins-agents
+  # rbac.hibernationMonitorServiceAccountName -- Name of the service account the Hibernation monitor will run as (if enabled)
+  hibernationMonitorServiceAccountName: managed-master-hibernation-monitor
