@@ -19,13 +19,13 @@ variable "size_min" {
 }
 
 variable "size_max" {
-  default = 1
+  default = 6
 }
 
 variable "size_desired" {
-  default = 1
+  default = 2
 }
 
 variable "instance_types" {
-  default = ["t3.xlarge", "t3.2xlarge"]
+  default = ["m7g.xlarge", "m7g.xlarge"]
 }
