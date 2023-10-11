@@ -7,11 +7,11 @@ variable "subnet-cidr-prefix" {
 }
 
 variable "public-subnet-count" {
-  default = 1
+  default = 2
 }
 
 variable "private-subnet-count" {
-  default = 1
+  default = 2
 }
 
 variable "dns-host-name" {
