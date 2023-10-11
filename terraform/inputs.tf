@@ -20,7 +20,7 @@ variable "private-subnet-count" {
 
 variable "resource-prefix" {
   type = string
-  default = "ikurtz_cbci_aws_reinvent_2023"
+  default = "ikurtz-cbci-aws-reinvent-2023"
 }
 
 variable "aws-config" {
