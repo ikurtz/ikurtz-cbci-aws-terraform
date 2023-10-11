@@ -72,7 +72,7 @@ variable "common-tags" {
 
 variable "vpc-cidr-block" {
   type = string
-  default = "10.0.0.0/16"
+  default = "172.0.0.0/16"
 }
 
 variable "subnet-cidr-prefix" {
