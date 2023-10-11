@@ -12,6 +12,7 @@ resource "aws_eks_node_group" "node" {
   node_group_name = "${var.cluster-name}-${var.nodegroup-name}-${count.index}"
   node_role_arn   = var.aws_iam_role_node_arn
   subnet_ids      = [var.private-subnet-ids[count.index]]
+  ami_type        = var.ami_type
   instance_types  = var.instance_types
 
   scaling_config {
