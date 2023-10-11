@@ -14,6 +14,9 @@ variable "aws_iam_role_node_arn" {}
 
 variable "nodegroup-name" {}
 
+variable "ami-type" {
+  default = "AL2_ARM_64"
+
 variable "size_min" {
   default = 1
 }
