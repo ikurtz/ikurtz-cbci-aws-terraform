@@ -64,7 +64,7 @@ variable "common-tags" {
   }
   default = {
     cb-environment = "development",
-    cb-expiry      = "2022-2-30",
+    cb-expiry      = "2024-12-30",
     cb-owner       = "solution-architecture",
     cb-user        = "ikurtz"
   }
