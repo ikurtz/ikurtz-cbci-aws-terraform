@@ -3,7 +3,7 @@ variable "cidr-block" {
 }
 
 variable "subnet-cidr-prefix" {
-  default = "0.0"
+  default = "172.0"
 }
 
 variable "public-subnet-count" {
