@@ -77,7 +77,7 @@ variable "vpc-cidr-block" {
 
 variable "subnet-cidr-prefix" {
   type = string
-  default = "0.0"
+  default = "172.0"
   validation {
     condition = var.subnet-cidr-prefix != "0.0"
     error_message = "The subnet-cidr-prefix must be valid! i.e. 172.0 or 10.2 - something other than 0.0"
