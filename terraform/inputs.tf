@@ -11,7 +11,7 @@ variable "public-subnet-count" {
 variable "private-subnet-count" {
   type = number
   description = "The number of PRIVATE subnets to create. This also current dictates the number of node-groups created for the cluster - 1 per private subnet."
-  default = 1
+  default = 2
   validation {
     condition = var.private-subnet-count > 0 && var.private-subnet-count < 100
     error_message = "There must be at least 1 private subnet"
