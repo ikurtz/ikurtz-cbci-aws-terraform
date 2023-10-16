@@ -6,6 +6,6 @@ metadata:
 provisioner: efs.csi.aws.com
 parameters:
   provisioningMode: efs-ap # (EFS Access Point) - static at this time
-  fileSystemId: fs-123aaabbbccc
+  fileSystemId: fs-0cbc163a1b125530e
   directoryPerms: "700"
 
