@@ -1,4 +1,6 @@
 OperationsCenter:
+  Image:
+    dockerImage: cloudbees/cloudbees-cloud-core-oc:2.440.2.1
   JavaOpts: >-
     -Dcom.cloudbees.masterprovisioning.kubernetes.KubernetesMasterProvisioning.displayReplication=true
     -Dcom.cloudbees.masterprovisioning.kubernetes.KubernetesMasterProvisioning.deleteClaim=true
@@ -30,6 +32,31 @@ OperationsCenter:
       # OperationsCenter.Resources.Requests.Memory -- Memory request to run Operations Center
       # https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/#meaning-of-memory
       Memory: 4G
+
+# Master options
+Master:
+  # Master.Enabled -- Whether to create the resources required to schedule masters.
+  Enabled: true
+  Image:
+    # Master.Image.dockerImage -- Used to override the default docker image
+    dockerImage: cloudbees/cloudbees-core-mm:2.440.2.1
+  JavaOpts: >-
+    -Dcom.cloudbees.jenkins.plugins.pipeline.explorer.log.viewer.AdvancedConsoleAction.MAP_ENABLED=true
+
+# Agent options
+Agents:
+  # Agents.Enabled -- Enable to create agent resources (service account, role)
+  Enabled: true
+  Image:
+    # Agents.Image.dockerImage -- Used to override the default docker image used for agents
+    dockerImage: cloudbees/cloudbees-core-agent:2.440.2.1
+
+Hibernation:
+  # Hibernation.Enabled -- Whether to enable the [Hibernation](https://docs.cloudbees.com/docs/cloudbees-ci/latest/cloud-admin-guide/managing-masters#_hibernation_of_managed_masters) feature
+  Enabled: true
+  Image:
+    # Hibernation.Image.dockerImage -- Used to override the default docker image
+    dockerImage: cloudbees/managed-master-hibernation-monitor:366.2a421801d6ce
   
 Persistence:
   StorageClass: ikurtz-cbci-aws-reinvent-efs-sc
